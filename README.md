@@ -19,6 +19,13 @@ This project deploys the T-Pot, the All-in-One Multi Honeypot platform, on Micro
 - T-Pot Honeypot Platform
 - GitHub (for documentation, reference, and collaboration)
 
+## Contents
+
+[Create Microsoft Azure Virtual Machine](create-microsoft-azure-virtual-machine)
+[Installing and Configuring Honeypot](installing-and-configuring-honeypot)
+[Accessing T-Pot Web Interface](accessing-t-pot-web-interface)
+[Deleting Honeypot Resources](deleting-honeypot-resources)
+
 ## Steps
   
 Given the project's objective of setting up a honeypot to lure hackers globally, it's essential to consider a cloud-based hosting solution for optimal security. Numerous cloud providers offer varying pricing models tailored to diverse needs. Notable options include AWS, Google Cloud, and Alibaba Cloud.
