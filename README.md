@@ -21,10 +21,13 @@ This project deploys the T-Pot, the All-in-One Multi Honeypot platform, on Micro
 
 ## Contents
 
-[Create Microsoft Azure Virtual Machine](create-microsoft-azure-virtual-machine)
-[Installing and Configuring Honeypot](installing-and-configuring-honeypot)
-[Accessing T-Pot Web Interface](accessing-t-pot-web-interface)
-[Deleting Honeypot Resources](deleting-honeypot-resources)
+[Create Microsoft Azure Virtual Machine](#create-microsoft-azure-virtual-machine)
+
+[Installing and Configuring Honeypot](#installing-and-configuring-honeypot)
+
+[Accessing T-Pot Web Interface](#accessing-t-pot-web-interface)
+
+[Deleting Honeypot Resources](#deleting-honeypot-resources)
 
 ## Steps
   
