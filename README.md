@@ -41,37 +41,72 @@ If you encounter any issues during the installation process or simply want to le
 
 Upon accessing the main dashboard of the Microsoft Azure portal, you can initiate the creation of a virtual machine by selecting "Virtual Machines" under Azure services at the top of the page or by using the search bar.
 
+![](/images/honeypot-01.png)
+
 You'll be taken to a new page where you can click "Create" and opt for "Azure Virtual Machine".
+
+![](/images/honeypot-02.png)
 
 If a region selection prompt appears, choose the region closest to you to optimize costs, as pricing varies by region.
 
 Next, you'll need to establish a Resource Group. Feel free to give it any name that aligns with the machine's purpose. For instance, I'll name mine "Honeypot".
 
+![](/images/honeypot-03.png)
+
 Similarly, provide a name for the virtual machine. As previously mentioned, select the region closest to you to manage costs effectively. For the image option, as specified in the documentation, choose Debian 11 and retain the default architecture setting.
 
 For the size, the minimum requirement, as per their specifications, is 8 GB. However, we'll opt for 16 GB, so select "D4s_V3" and click "Select".
 
+![](/images/honeypot-04.png)
+
 Next, to authenticate with our virtual machine, you have the option to choose between SSH public key or Password. For the purposes of this lab, I'll select Password. 
 Enter a username; I'll use "Honey", and create a secure password.
 
+![](/images/honeypot-05.png)
+
 Ensure that SSH is selected, as we'll use this to connect to our virtual machine later.
+
+![](/images/honeypot-06.png)
 
 Now, proceed to "Disks" by clicking "Next". It's recommended to use a 128 GB disk. To set this up, click "Create and attach a new disk", then select "Change size" and adjust it to 128 GB. Confirm by clicking "OK".
 
+![](/images/honeypot-07.png)
+
+![](/images/honeypot-08.png)
+
 Next, navigate to the "Networking" section. You'll see that a virtual network has been created and a public IP has been assigned to our virtual machine. There's no need to make any changes here.
 
+![](/images/honeypot-09.png)
+
 Proceed to the "Management" section. Here, you'll find the "auto-shutdown" feature, which automatically stops our VM daily to help save costs. Since we need to keep our VM running for a while, we'll leave this option disabled for now. However, it's worth noting that this feature can be handy when you no longer have free Azure credits to avoid unexpected charges.
+
+![](/images/honeypot-10.png)
   
 It's crucial to determine the duration for which you plan to keep your VM. Even when turned off, you'll still incur charges due to the associated public IP. If you no longer intend to use your VM, it's advisable to delete all resource groups to avoid additional charges.
 
+![](/images/honeypot-11.png)
+
 To deploy our VM, proceed to "Review + create". After verifying all settings, click on "Create".
+
+![](/images/honeypot-12.png)
+
+![](/images/honeypot-13.png)
+
+![](/images/honeypot-14.png)
 
 Once the VM is deployed, we need to configure it for the honeypot by opening specific ports. In our scenario, we want all ports to be open. To do this, click on "Go to resource". From there, navigate to "Networking". To open the ports, add an inbound rule and specify the range of ports you want to open. In our case, input "0-65535" and leave the rest as default. Click "Add" to create a new security rule.
 
+![](/images/honeypot-15.png)
+
+![](/images/honeypot-16.png)
+
 Additionally, make sure to note down your public IP as we'll need it to connect to our VM in the next step.
+
 ## Installing and Configuring Honeypot
 
 **Connecting to VM via SSH**:
+
+![](/images/honeypot-17.png)
 
 - To install the honeypot, we need to connect to our created VM via SSH. If you're using Windows, you can download [PuTTY](https://www.putty.org/) to establish the connection.
 - For this lab, I'm using Linux, so I'll be connecting using the terminal with the `ssh` command. Since I've used a secure password for this VM, I've made things easier by creating a folder, echoing the password to a txt file, and using `sshpass` to login.
@@ -91,7 +126,6 @@ sshpass -p `cat pass.txt` ssh Honey@20.174.160.233
 sudo apt update && sudo apt upgrade -y
 ```
 
-
 **Cloning the Repository**:
 - To clone the repository to our VM, we need Git. Install Git by typing:
 ```
@@ -102,6 +136,8 @@ sudo apt install git
 ```
 git clone https://github.com/telekom-security/tpotce/
 ```
+
+![](/images/honeypot-18.png)
 
 **Navigating to the Installation Folder**:
 
@@ -116,8 +152,12 @@ cd tpotce/iso/installer
 ```
 sudo ./install.sh --type=user
 ```
+![](/images/honeypot-19.png)  
+
 - Make sure to run it as root. If prompted to continue, type `y`.
 - You'll be brought to the installer. Select "standard" from here.
+
+![](/images/honeypot-20.png)  
 
 **Creating Web User**:
 
@@ -126,7 +166,12 @@ sudo ./install.sh --type=user
 **Completing the Installation**:
 
 - Once you've created the web user, the installation will complete, and we can proceed to the next step.
+
+![](/images/honeypot-21.png)  
+
 ## Accessing T-Pot Web Interface
+
+![](/images/honeypot-22.png)  
 
 - To access t-pot, open a web browser and navigate to the following address:
 ```
@@ -135,6 +180,9 @@ http://[VM_Public_IP]:64297
 - Here, replace `[VM_Public_IP]` with the public IP address of our VM. In my case it will be `20.174.160.233`. The web interface runs on port 64297.
 - If you encounter a potential security risk warning, simply click on "Advanced," accept the risk, and continue.
 - Authenticate using the web user credentials you created in the previous step.
+
+![](/images/honeypot-23.png)  
+
 ### Exploring T-Pot Interface
 
 - Once logged in, you'll see the t-pot interface with various options. For detailed information about each option, you can refer to their [GitHub](https://github.com/telekom-security/tpotce/) page.
@@ -144,7 +192,10 @@ http://[VM_Public_IP]:64297
 On the t-pot landing page, simply click on `Kibana` to be redirected to the Kibana interface. Here, you'll find a wide range of dashboards and visualizations specifically designed for the honeypots supported by t-pot.
 
 If you want to view a consolidated dashboard featuring all the honeypots together, head over to the second page and select `T-Pot`.
+
 #### Attack Map
+
+![](/images/honeypot-24.png)  
 
 On the t-pot landing page, simply click on `Attack Map` to access this feature. Due to the Attack Map's use of web sockets, you'll need to re-enter the `<web_user>` credentials for security purposes.
 
@@ -154,7 +205,11 @@ If you're interested in gathering more information about one of the IP addresses
  
 #### Elasticvue
 
+![](/images/honeypot-25.png)  
+
 On the t-pot landing page, simply click on `Elastivue` to access this feature. Elastivue provides insights into the cluster running all the services. If your honeypot is frequently under attack, you can adjust the RAM allocation accordingly. Additionally, Elastivue allows you to view logs and databases associated with your honeypot setup. Feel free to explore these features to gain a deeper understanding of your honeypot's performance and activity.
+
+![](/images/honeypot-26.png)  
 
 If you're interested in learning more about the features offered by t-pot, you can refer to their GitHub repository and read the documentation. This resource provides detailed information about the capabilities and functionalities of t-pot, helping you to make the most out of this honeypot solution.
 
