@@ -225,7 +225,7 @@ At the bottom of the dashboard, you can identify the associated CVEs related to 
 
 #### Attack Map
 
-![](/images/honeypot-24.png)  
+![](/images/honeypot-27.png)  
 
 On the t-pot landing page, simply click on `Attack Map` to access this feature. Due to the Attack Map's use of web sockets, you'll need to re-enter the `<web_user>` credentials for security purposes.
 
