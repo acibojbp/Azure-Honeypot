@@ -203,6 +203,26 @@ On the t-pot landing page, simply click on `Kibana` to be redirected to the Kiba
 
 If you want to view a consolidated dashboard featuring all the honeypots together, head over to the second page and select `T-Pot`.
 
+![](/images/honeypot-28.png)  
+
+![](/images/honeypot-29.png)  
+
+The screenshots you see here were captured after running the honeypot for close to 24 hours. Please be aware that your results may differ.
+
+![](/images/honeypot-30.png)  
+
+The dashboard offers comprehensive insights into the ongoing activities. To target specific information, you can employ the KQL filter at the top. Additionally, you can click on any of the information to obtain a more detailed view.
+
+The heat map displays the geographical locations from which the attacks originate. As we continue scrolling, more detailed data becomes visible, including the countries attacking our honeypot, the ports they're attempting to access, and the targeted systems. Again, clicking on any of this data will provide a more in-depth perspective.
+
+![](/images/honeypot-31.png)  
+
+Further down the page, you'll find the credentials that the attackers are trying to use. I urge you not to use these credentials on any of your accounts.
+
+At the bottom of the dashboard, you can identify the associated CVEs related to the attacks via Suricata. Feel free to investigate these vulnerabilities and discover ways to protect your system against them.
+
+![](/images/honeypot-32.png)  
+
 #### Attack Map
 
 ![](/images/honeypot-24.png)  
