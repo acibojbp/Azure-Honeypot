@@ -1,4 +1,4 @@
-# Honeypot Deployment on Microsoft Azure
+# Deployment of T-Pot Multi Honeypot Platform on Microsoft Azure
 
 ## Overview
 
